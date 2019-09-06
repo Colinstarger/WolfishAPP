@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<!-- Visualization manager for Wolfish - BASELINE -->
+
+<html lang="en">
+<head>
+	<title>{}Viz Manager</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<script src="generic_viz_manager.js"></script>
+</head>
+<body>
+	<div class="container" id="bootstrap_container">
+
+	<div class = "row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8">
+			<h3 class="text-primary text-center mb-2">Explore {} Data</h3>
+
+		<div class = "row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<p class="text-justify">Select <span class="font-weight-bold">query</span> to slice {} data underlying the empirical claims in <span class="font-italic">The Argument that Cries Wolfish</span>. Narrow by <span class="font-weight-bold">year</span> and <span class="font-weight-bold">jurisdiction</span>.</p>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+
+		<form id="main_form" action="/data">
+			
+		<div class="row">
+			<!-- Use this to make generic -->
+			<div class="form-group"><select name="source" class="d-none" id="source"><option value="{}"></option></select></div>
+			
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<div class="form-group">
+				    <div class="text-center"><label for="Category" class="pt-2 font-weight-bold">Query</label></div>
+				    <select class="form-control" name="cat" id="cat">
+				    	<option value="numcases">Number of Cases</option>
+				    	<option class = "d-none" value="compare_district">Compare District</option>
+				    	<option class = "d-none" value="compare_circuit">Compare Circuit</option>
+				    	<option class = "d-none" value="detention">Detention Stats</option>
+				      	<option value="race">Race of Defendants</option>
+				      	<option value="sex">Sex of Defendants</option>
+				      	<option value="init_outcome">Commissioner Hearing Outcome</option>
+				      	<option value="top_disposition">Top Charge Disposition</option>
+				      	<option value="age_at_issue">Defendant Age</option>
+				      	<option value="num_charges">Number of Charges</option>
+				      	<option value="length_case">Length of Case (from issue)</option>
+				      	<option value="length_case_init">Length of Case (from INIT)</option>
+				      	<option value="top_charge">Top 20 Charges</option>
+				      	<option value="zipcode">Top 20 ZipCodes</option>
+				    </select>
+				  </div>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+				<!-- sub-columns add to 12 MF! -->
+		<div class="row">
+
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+
+					<div class="row">
+				
+					<div class="col-sm-5">	
+						<div class="form-group">
+					    	<label for="BeginYear" class="font-weight-bold">Begin Year</label>
+					    	<select class="form-control" name="begin_year" id="begin_year">
+					      	<option   value="2013">2013</option>
+					      	<option   value="2014">2014</option>
+					      	<option   value="2015">2015</option>
+					      	<option   value="2016">2016</option>
+					      	<option   value="2017">2017</option>
+					      	<option   value="2018">2018</option>
+					    	</select>
+					 	</div>
+					</div>
+					
+					<div class="col-sm-2"></div>
+
+					<div class="col-sm-5">
+						<div class="form-group">
+					    	<label for="EndYear" class="font-weight-bold">End Year</label>
+					    	<select class="form-control" name="end_year" id="end_year">
+					      	<option   value="2013">2013</option>
+					      	<option   value="2014">2014</option>
+					      	<option   value="2015">2015</option>
+					      	<option   value="2016">2016</option>
+					      	<option   value="2017">2017</option>
+					      	<option   value="2018">2018</option>
+					    	</select>
+						</div> 
+					</div>
+
+				</div> <!-- innermost row -->
+
+				<div class="col-sm-2"></div>
+			</div> <!-- subrow --> 
+			</div>
+
+			<div class = "row">
+				<div class = "col-sm-2"></div>
+				<div class = "col-sm-8">
+			  		<div class="form-group">
+			    		<div class="text-center"><label for="Jurisdiction" class="font-weight-bold">Jurisdiction</label></div>
+
+			    	<div class="row">
+
+						<div class="col-sm-6">
+							<div class="form-check">
+  								<input class="form-check-input" type="checkbox" name="balt_city" value="yes" id="balt_city">
+  								<label class="form-check-label" for="Jurisdiction">
+    							Baltimore City
+  								</label>
+							</div>
+
+							<div class="form-check">
+  								<input class="form-check-input" type="checkbox" name="balt_county" value="yes" id="balt_county">
+  								<label class="form-check-label" for="Jurisdiction">
+    							Baltimore County
+  								</label>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+
+							<div class="form-check">
+  								<input class="form-check-input" type="checkbox" name="mont_county" value="yes" id="mont_county">
+  								<label class="form-check-label" for="Jurisdiction">
+    							Montgomery County
+  								</label>
+							</div>
+
+							<div class="form-check">
+  								<input class="form-check-input" type="checkbox" name="pg_county" value="yes" id="pg_county">
+  								<label class="form-check-label" for="Jurisdiction">
+    							Prince George's County
+  								</label>
+							</div>
+						</div>
+
+					</div> <!-- innermost row -->
+					</div> <!-- form grounp -->
+				</div> <!-- col-sm-8 -->
+				<div class = "col-sm-2"></div>
+			</div> <!-- jurisdiction row -->
+			
+			  <div class="text-center"><button type="submit" class="btn btn-primary pt-2">Submit</button></div>
+			</form>
+
+		</div> <!-- class col-sm-8 -->
+		<div class="col-sm-2"></div>
+	</div> <!-- row -->
+
+	</div> <!-- Bootstrap container -->
+</body>
