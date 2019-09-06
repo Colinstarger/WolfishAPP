@@ -1,0 +1,21 @@
+/* Not really used, but here just in case */
+table, tr, th, td {
+	/*
+	padding-top: 0 !important;
+	padding-bottom: 1 !important;
+	padding-left: 0 !important;
+	padding-right: 1 !important;
+	*/
+	/*
+	padding: 0 !important;
+	*/
+}
+
+#figure_sql {
+	/*
+	color: #ccccff
+	color: grey;
+	*/
+	color: red;
+}
+
