@@ -341,9 +341,12 @@ def winnowCompare_serveHTML(var_dict):
 		elif (num_juris==2):
 			baseline_df = baseline_df[ (baseline_df['jurisdiction']== juris_list[0]) | (baseline_df['jurisdiction']== juris_list[1])]
 			allnp_df = allnp_df[ (allnp_df['jurisdiction']== juris_list[0]) | (allnp_df['jurisdiction']== juris_list[1])]
-		else:
+		elif (num_juris==3):
 			baseline_df = baseline_df[ (baseline_df['jurisdiction']== juris_list[0]) | (baseline_df['jurisdiction']== juris_list[1]) | (baseline_df['jurisdiction']== juris_list[2])]
 			allnp_df = allnp_df[ (allnp_df['jurisdiction']== juris_list[0]) | (allnp_df['jurisdiction']== juris_list[1]) | (allnp_df['jurisdiction']== juris_list[2])]
+		else:
+			#Do nothing
+			pass
 
 		#Finally the calculations
 		base_num = len(baseline_df)
